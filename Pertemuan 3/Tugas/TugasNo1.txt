@@ -1,0 +1,19 @@
+
+Program ini mensimulasikan lengan robot 2 segmen menggunakan OpenGL/GLUT yang terdiri dari lengan atas dan lengan bawah
+Masing-masing bagian dikendalikan oleh variabel shoulder untuk sendi bahu dan elbow untuk sendi siku yang menyimpan nilai sudut rotasi dalam derajat
+
+- Fungsi init menginisialisasi warna latar belakang menjadi hitam dan mengatur mode pewarnaan flat
+
+- Fungsi display adalah inti program yang dipanggil setiap kali layar perlu digambar ulang. Lengan atas digambar dengan cara menggeser pivot ke posisi bahu, 
+merotasi sebesar sudut shoulder pada sumbu Z, lalu menggambar kubus kawat sebagai representasi lengan
+Lengan bawah digambar dengan cara yang sama dari ujung lengan atas, dirotasi sebesar sudut elbow relatif terhadap lengan atas
+Karena transformasi lengan bawah dilakukan setelah lengan atas, gerakan siku secara otomatis mengikuti posisi bahu
+Konsep ini disebut hierarki transformasi
+
+- Fungsi reshape dipanggil saat ukuran window berubah untuk menyesuaikan viewport dan projection matrix agar tampilan tetap proporsional
+
+- Fungsi keyboard menangani input dari pengguna. Tombol S menggerakkan bahu, tombol E menggerakkan siku, dan ESC untuk keluar. Setiap penekanan tombol memperbarui 
+nilai sudut lalu memanggil glutPostRedisplay agar layar digambar ulang
+
+- Fungsi main menginisialisasi GLUT, membuat window, mendaftarkan semua fungsi callback, lalu masuk ke glutMainLoop untuk terus menunggu dan merespons 
+input dari pengguna
